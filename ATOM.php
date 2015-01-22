@@ -35,4 +35,26 @@ class ATOM extends Feed
         parent::__construct(Feed::ATOM);
     }
 
+	/**
+	 * @param string $name the person name
+	 * @param string $uri the person information uri
+	 * @param string $email the person email
+	 * @return self
+	 */
+	public function addAuthor($name, $uri = null, $email = null)
+	{
+		$authorInfo = [
+			'name'	=> $name
+		];
+		if (!empty($uri)) {
+			$authorInfo['uri'] = $uri;
+		}
+		if (!empty($email)) {
+			$authorInfo['email'] = $email;
+		}
+		$this->setChannelElement('author', $authorInfo);
+
+		return $this;
+	}
+
 }
